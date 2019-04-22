@@ -7,8 +7,9 @@ from .models import Asset
 def asset_list_view(request):
     qs = Asset.objects.all()
     page_title = 'Assets'
+    asset_link = 'active'
     template_name = 'asset_list.html'
-    context = {'object_list': qs, 'page_title': page_title}
+    context = {'object_list': qs, 'page_title': page_title, 'asset_link': asset_link}
     return render(request, template_name, context)
 
 
