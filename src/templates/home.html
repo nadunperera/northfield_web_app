@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
-{% block content %} 
-  <p>This is {{ page_title }} page content!</p>
-
+{% block content %}
   {% if user.is_authenticated %}
   <h2>Hello {{ user }}</h2>
   {% endif %}
+  <p>This is {{ page_title }} page content!</p>
 {% endblock %}

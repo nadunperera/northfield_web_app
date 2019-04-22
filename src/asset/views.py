@@ -6,7 +6,7 @@ from .models import Asset
 
 def asset_list_view(request):
     qs = Asset.objects.all()
-    page_title = 'All Assets'
+    page_title = 'Assets'
     template_name = 'asset_list.html'
     context = {'object_list': qs, 'page_title': page_title}
     return render(request, template_name, context)
