@@ -6,24 +6,23 @@ from .models import Asset
 
 def asset_list_view(request):
     qs = Asset.objects.all()
-    page_title = 'Assets'
-    asset_link = 'active'
+    page_title = 'All Assets'
     template_name = 'asset_list.html'
-    context = {'object_list': qs, 'page_title': page_title, 'asset_link': asset_link}
+    context = {'object_list': qs, 'page_title': page_title, 'asset_link': 'active'}
+    return render(request, template_name, context)
+
+
+def asset_detail_page(request, asset_id):
+    obj = get_object_or_404(Asset, id=asset_id)
+    page_title = 'Assets | ' + obj.name
+    template_name = 'asset_detail.html'
+    context = {'object': obj, 'page_title': page_title, 'asset_detail_link': 'active'}
     return render(request, template_name, context)
 
 
 def asset_create_view(request):
     template_name = 'asset_create.html'
     context = {'form': None}
-    return render(request, template_name, context)
-
-
-def asset_detail_page(request, asset_id):
-    # obj = Asset.objects.get(id=asset_id)
-    obj = get_object_or_404(Asset, id=asset_id)
-    template_name = 'asset_detail.html'
-    context = {'object': obj}
     return render(request, template_name, context)
 
 
