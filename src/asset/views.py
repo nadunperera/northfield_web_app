@@ -19,6 +19,10 @@ class AssetCreateView(LoginRequiredMixin, CreateView):
     model = Asset
     fields = ['name', 'address', 'suburb', 'postcode', 'state']
 
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+
 
 class AssetUpdateView(LoginRequiredMixin, UpdateView):
     model = Asset
