@@ -2,6 +2,8 @@
   <dictionary name="nadun">
     <words>
       <w>endblock</w>
+      <w>endfor</w>
+      <w>lconf</w>
       <w>navbar</w>
       <w>northfield</w>
       <w>toggler</w>

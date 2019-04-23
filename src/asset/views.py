@@ -4,7 +4,7 @@ from .models import Asset
 
 # Create your views here.
 
-def asset_list_view(request):
+def asset_list(request):
     qs = Asset.objects.all()
     page_title = 'All Assets'
     template_name = 'asset_list.html'
@@ -12,7 +12,7 @@ def asset_list_view(request):
     return render(request, template_name, context)
 
 
-def asset_detail_page(request, asset_id):
+def asset_detail(request, asset_id):
     obj = get_object_or_404(Asset, id=asset_id)
     page_title = 'Assets | ' + obj.name
     template_name = 'asset_detail.html'
@@ -20,20 +20,20 @@ def asset_detail_page(request, asset_id):
     return render(request, template_name, context)
 
 
-def asset_create_view(request):
+def asset_create(request):
     template_name = 'asset_create.html'
     context = {'form': None}
     return render(request, template_name, context)
 
 
-def asset_update_view(request, asset_id):
+def asset_update(request, asset_id):
     obj = get_object_or_404(Asset, id=asset_id)
     template_name = 'asset_detail.html'
     context = {'object': obj, 'form': None}
     return render(request, template_name, context)
 
 
-def asset_delete_view(request, asset_id):
+def asset_delete(request, asset_id):
     obj = get_object_or_404(Asset, id=asset_id)
     template_name = 'asset_detail.html'
     context = {'object': obj}
