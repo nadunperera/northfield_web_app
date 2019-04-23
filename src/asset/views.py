@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import Asset
 
 
 # Create your views here.
-
+@login_required
 def asset_list(request):
     template_name = 'asset_list.html'
     context = {'assets': Asset.objects.all(),
@@ -12,6 +13,7 @@ def asset_list(request):
     return render(request, template_name, context)
 
 
+@login_required
 def asset_detail(request, asset_id):
     asset = get_object_or_404(Asset, id=asset_id)
     template_name = 'asset_detail.html'
@@ -21,12 +23,14 @@ def asset_detail(request, asset_id):
     return render(request, template_name, context)
 
 
+@login_required
 def asset_create(request):
     template_name = 'asset_create.html'
     context = {'form': None}
     return render(request, template_name, context)
 
 
+@login_required
 def asset_update(request, asset_id):
     obj = get_object_or_404(Asset, id=asset_id)
     template_name = 'asset_detail.html'
@@ -34,6 +38,7 @@ def asset_update(request, asset_id):
     return render(request, template_name, context)
 
 
+@login_required
 def asset_delete(request, asset_id):
     obj = get_object_or_404(Asset, id=asset_id)
     template_name = 'asset_detail.html'
