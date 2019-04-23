@@ -16,7 +16,7 @@ def asset_detail_page(request, asset_id):
     obj = get_object_or_404(Asset, id=asset_id)
     page_title = 'Assets | ' + obj.name
     template_name = 'asset_detail.html'
-    context = {'object': obj, 'page_title': page_title, 'asset_detail_link': 'active'}
+    context = {'object': obj, 'page_title': page_title, 'asset_link': 'active'}
     return render(request, template_name, context)
 
 
