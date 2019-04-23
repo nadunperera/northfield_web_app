@@ -17,12 +17,12 @@
             <tbody>
             {% for asset in assets %}
             <tr>
-                <td><a href="{{ asset.id }}">{{ asset.name }}</a></td>
+                <td><a href="{% url 'asset_detail' asset.id %}">{{ asset.name }}</a></td>
                 <td>{{ asset.address }}</td>
                 <td>{{ asset.suburb }}</td>
                 <td>{{ asset.postcode }}</td>
                 <td>{{ asset.state }}</td>
-                <td><a href="{{ asset.id }}">View</a></td>
+                <td><a href="{% url 'asset_detail' asset.id %}">View</a></td>
             </tr>
             {% endfor %}
             </tbody>
