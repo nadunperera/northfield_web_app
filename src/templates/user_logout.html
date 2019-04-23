@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{%block content %}
+<div class="card">
+    <h5 class="card-header">You have been logged out!</h5>
+    <div class="card-body">
+        <p class="card-text">Thank you for using Northfield.</p>
+        <p class="card-text">If you have any queries please send us an email at d.trump@gmail.com.</p>
+    </div>
+    <div class="card-footer text-muted">
+        <a href="{% url 'login' %}">Login Again?</a>
+    </div>
+</div>
+{% endblock content%}

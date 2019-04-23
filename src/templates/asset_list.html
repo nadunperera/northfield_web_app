@@ -1,28 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>My Assets</h1>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Address</th>
-            <th scope="col">Suburb</th>
-            <th scope="col">Postcode</th>
-            <th scope="col">State</th>
-            <th scope="col">Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for object in object_list %}
-        <tr>
-            <td><a href="{{ object.id }}">{{ object.name }}</a></td>
-            <td>{{ object.address }}</td>
-            <td>{{ object.suburb }}</td>
-            <td>{{ object.postcode }}</td>
-            <td>{{ object.state }}</td>
-            <td><a href="{{ object.id }}">View</a></td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<div class="card">
+    <h5 class="card-header">My Assets</h5>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Suburb</th>
+                <th scope="col">Postcode</th>
+                <th scope="col">State</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for asset in assets %}
+            <tr>
+                <td><a href="{{ asset.id }}">{{ asset.name }}</a></td>
+                <td>{{ asset.address }}</td>
+                <td>{{ asset.suburb }}</td>
+                <td>{{ asset.postcode }}</td>
+                <td>{{ asset.state }}</td>
+                <td><a href="{{ asset.id }}">View</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock content%}

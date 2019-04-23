@@ -5,18 +5,19 @@ from .models import Asset
 # Create your views here.
 
 def asset_list(request):
-    qs = Asset.objects.all()
-    page_title = 'All Assets'
     template_name = 'asset_list.html'
-    context = {'object_list': qs, 'page_title': page_title, 'asset_link': 'active'}
+    context = {'assets': Asset.objects.all(),
+               'page_title': 'All Assets',
+               'asset_link': 'active'}
     return render(request, template_name, context)
 
 
 def asset_detail(request, asset_id):
-    obj = get_object_or_404(Asset, id=asset_id)
-    page_title = 'Assets | ' + obj.name
+    asset = get_object_or_404(Asset, id=asset_id)
     template_name = 'asset_detail.html'
-    context = {'object': obj, 'page_title': page_title, 'asset_link': 'active'}
+    context = {'asset': asset,
+               'page_title': 'Assets | ' + asset.name,
+               'asset_link': 'active'}
     return render(request, template_name, context)
 
 
