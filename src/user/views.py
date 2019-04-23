@@ -14,14 +14,14 @@ def register(request):
             return redirect('user_login')
     else:
         form = UserRegisterForm()
-    template_name = 'user_register.html'
+    template_name = 'user/user_register.html'
     context = {'form': form}
     return render(request, template_name, context)
 
 
 @login_required
 def profile(request):
-    template_name = 'user_profile.html'
+    template_name = 'user/user_profile.html'
     if request.method == 'POST':
         user_update_form = UserUpdateForm(request.POST, instance=request.user)
         profile_update_form = ProfileUpdateForm(request.POST, instance=request.user.profile)

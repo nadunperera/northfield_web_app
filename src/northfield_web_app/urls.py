@@ -22,11 +22,10 @@ from user import views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home_page, name='home_page'),
-    path('register/', user_views.register, name='user_register'),
-    path('profile/', user_views.profile, name='user_profile'),
-    path('login/', auth_views.LoginView.as_view(template_name='../templates/user_login.html'), name='user_login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='../templates/user_logout.html'), name='user_logout'),
 
-    path('asset/', include('asset.urls')),
+    path('', include('asset.urls')),
+    path('register/', user_views.register, name='user_register'),
+    path('login/', auth_views.LoginView.as_view(template_name='user/user_login.html'), name='user_login'),
+    path('profile/', user_views.profile, name='user_profile'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='user/user_logout.html'), name='user_logout'),
 ]
