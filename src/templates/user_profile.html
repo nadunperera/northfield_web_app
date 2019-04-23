@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
-{%block content %}
+{% block content %}
 <div class="card">
-    <h5 class="card-header">{{ user.username }}</h5>
+    <h5 class="card-header">Your Profile</h5>
     <div class="card-body">
-
-    </div>
-    <div class="card-footer text-muted">
-        Hello!
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ user_update_form|crispy }}
+                {{ profile_update_form|crispy }}
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
     </div>
 </div>
-{% endblock content%}
+{% endblock content %}
