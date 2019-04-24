@@ -117,5 +117,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-LOGIN_REDIRECT_URL = 'home_page'
+LOGIN_REDIRECT_URL = 'asset_list'
 LOGIN_URL = 'user_login'
