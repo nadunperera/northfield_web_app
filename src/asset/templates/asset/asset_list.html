@@ -3,6 +3,15 @@
 <div class="card">
     <h5 class="card-header">My Assets</h5>
     <div class="card-body">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="{% url 'asset_create' %}">Add New</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         <table class="table table-hover">
             <thead class="thead-dark">
             <tr>
@@ -22,7 +31,10 @@
                 <td>{{ asset.suburb }}</td>
                 <td>{{ asset.postcode }}</td>
                 <td>{{ asset.state }}</td>
-                <td><a href="{% url 'asset_detail' asset.id %}">View</a></td>
+                <td><a href="{% url 'asset_detail' asset.id %}">View</a> |
+                    <a href="{% url 'asset_update' asset.id %}">Edit</a> |
+                    <a href="{% url 'asset_delete' asset.id %}">Delete</a>
+                </td>
             </tr>
             {% endfor %}
             </tbody>
