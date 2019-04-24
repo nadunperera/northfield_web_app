@@ -8,6 +8,7 @@ class AssetListView(LoginRequiredMixin, ListView):
     model = Asset
     context_object_name = 'assets'
     ordering = ['-created']
+    paginate_by = 10
 
     def get_queryset(self):
         queryset = super(AssetListView, self).get_queryset()
