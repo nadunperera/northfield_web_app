@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Asset
 
 
@@ -42,6 +42,18 @@ class AssetUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)
+
+    def test_func(self):
+        asset = self.get_object()
+        if self.request.user == asset.owner:
+            return True
+        return False
+
+
+class AssetDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Asset
+    context_object_name = 'asset'
+    success_url = '/'
 
     def test_func(self):
         asset = self.get_object()
