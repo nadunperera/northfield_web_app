@@ -1,63 +1,69 @@
 {% extends "website/base.html" %}
 {% block content %}
-<div class="card">
-    <h5 class="card-header">My Assets</h5>
-    <div class="card-body">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="btn btn-primary" href="{% url 'asset_create' %}">Add New</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Suburb</th>
-                    <th scope="col">Postcode</th>
-                    <th scope="col">State</th>
-                    <th scope="col">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for asset in assets %}
-                <tr>
-                    <td><a href="{% url 'asset_detail' asset.id %}">{{ asset.name }}</a></td>
-                    <td>{{ asset.address }}</td>
-                    <td>{{ asset.suburb }}</td>
-                    <td>{{ asset.postcode }}</td>
-                    <td>{{ asset.state }}</td>
-                    <td><a href="{% url 'asset_detail' asset.id %}">View</a> |
-                        <a href="{% url 'asset_update' asset.id %}">Edit</a> |
-                        <a href="{% url 'asset_delete' asset.id %}">Delete</a>
-                    </td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        {% if is_paginated %}
-            {% if page_obj.has_previous %}
-                <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-            {% endif %}
-            {% for num in page_obj.paginator.page_range %}
-                {% if page_obj.number == num %}
-                    <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                    <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+    <div class="card">
+        <h5 class="card-header">My Assets</h5>
+        <div class="card-body">
+            {% if not assets %}
+                <h5 class="card-title">You have no assets.</h5>
+                <a class="btn btn-primary" href="{% url 'asset_create' %}">Create one?</a>
+            {% else %}
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="btn btn-primary" href="{% url 'asset_create' %}">Add New</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Suburb</th>
+                            <th scope="col">Postcode</th>
+                            <th scope="col">State</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for asset in assets %}
+                            <tr>
+                                <td><a href="{% url 'asset_detail' asset.id %}">{{ asset.name }}</a></td>
+                                <td>{{ asset.address }}</td>
+                                <td>{{ asset.suburb }}</td>
+                                <td>{{ asset.postcode }}</td>
+                                <td>{{ asset.state }}</td>
+                                <td><a href="{% url 'asset_detail' asset.id %}">View</a> |
+                                    <a href="{% url 'asset_update' asset.id %}">Edit</a> |
+                                    <a href="{% url 'asset_delete' asset.id %}">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if is_paginated %}
+                    {% if page_obj.has_previous %}
+                        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                        <a class="btn btn-outline-info mb-4"
+                           href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                    {% endif %}
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                    {% endif %}
                 {% endif %}
-            {% endfor %}
-            {% if page_obj.has_next %}
-                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
             {% endif %}
-        {% endif %}
+        </div>
     </div>
-</div>
-{% endblock content%}
+{% endblock content %}
