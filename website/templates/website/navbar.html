@@ -1,15 +1,15 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark pl-3 pr-3">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="{% url 'home_page' %}">Northfield</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-                <li class="nav-item  {{ home_link }}">
-                    <a class="nav-link" href="{% url 'home_page' %}">Home</a>
-                </li>
+            <li class="nav-item  {{ home_link }}">
+                <a class="nav-link" href="{% url 'home_page' %}">Home</a>
+            </li>
             {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'asset_list' %}">Asset</a>
