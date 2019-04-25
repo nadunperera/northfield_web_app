@@ -12,33 +12,35 @@
                 </ul>
             </div>
         </nav>
-        <table class="table table-hover table-responsive">
-            <thead class="thead-dark">
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Address</th>
-                <th scope="col">Suburb</th>
-                <th scope="col">Postcode</th>
-                <th scope="col">State</th>
-                <th scope="col">Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for asset in assets %}
-            <tr>
-                <td><a href="{% url 'asset_detail' asset.id %}">{{ asset.name }}</a></td>
-                <td>{{ asset.address }}</td>
-                <td>{{ asset.suburb }}</td>
-                <td>{{ asset.postcode }}</td>
-                <td>{{ asset.state }}</td>
-                <td><a href="{% url 'asset_detail' asset.id %}">View</a> |
-                    <a href="{% url 'asset_update' asset.id %}">Edit</a> |
-                    <a href="{% url 'asset_delete' asset.id %}">Delete</a>
-                </td>
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Suburb</th>
+                    <th scope="col">Postcode</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for asset in assets %}
+                <tr>
+                    <td><a href="{% url 'asset_detail' asset.id %}">{{ asset.name }}</a></td>
+                    <td>{{ asset.address }}</td>
+                    <td>{{ asset.suburb }}</td>
+                    <td>{{ asset.postcode }}</td>
+                    <td>{{ asset.state }}</td>
+                    <td><a href="{% url 'asset_detail' asset.id %}">View</a> |
+                        <a href="{% url 'asset_update' asset.id %}">Edit</a> |
+                        <a href="{% url 'asset_delete' asset.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
         {% if is_paginated %}
             {% if page_obj.has_previous %}
                 <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
