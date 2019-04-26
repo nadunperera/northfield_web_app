@@ -40,10 +40,6 @@ class AssetUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Asset
     fields = ['name', 'address', 'suburb', 'postcode', 'state']
 
-    def form_valid(self, form):
-        form.instance.owner = self.request.user
-        return super().form_valid(form)
-
     def test_func(self):
         asset = self.get_object()
         if self.request.user == asset.owner:
