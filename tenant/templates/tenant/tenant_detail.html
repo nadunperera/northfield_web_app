@@ -1,0 +1,13 @@
+{% extends "website/base.html" %}
+{% block content %}
+<div class="card">
+    <h5 class="card-header">{{ tenant.first_name }} {{ tenant.last_name }}</h5>
+    <div class="card-body">
+        <h5 class="card-title">{{ tenant.asset.name }}</h5>
+        <p class="card-text">{{ tenant.mobile }}</p>
+        <p class="card-text">{{ tenant.email }}</p>
+        <p class="card-text"><small class="text-muted">Created at {{ tenant.created }}</small></p>
+        <p class="card-text"><small class="text-muted">Updated at {{ tenant.updated }}</small></p>
+    </div>
+</div>
+{% endblock content %}
