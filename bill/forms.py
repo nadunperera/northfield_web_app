@@ -10,7 +10,7 @@ class BillCreateUpdateForm(forms.ModelForm):
         widgets = {
             'bill_from': forms.DateTimeInput(attrs={'class': 'datetime-input'}),
             'bill_to': forms.DateTimeInput(attrs={'class': 'datetime-input'}),
-
+            'discount_end': forms.DateTimeInput(attrs={'class': 'datetime-input'}),
         }
 
     def __init__(self, *args, **kwargs):
