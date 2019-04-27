@@ -1,0 +1,68 @@
+{% extends "website/base.html" %}
+{% block content %}
+    <div class="card">
+        <h5 class="card-header">All Bills</h5>
+        <div class="card-body">
+            {% if not bills %}
+                <h5 class="card-title">You have no bills.</h5>
+                <a class="btn btn-primary" href="{% url 'bill_create' %}">Create one?</a>
+            {% else %}
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="btn btn-primary" href="{% url 'bill_create' %}">Add New</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Service</th>
+                            <th scope="col">Bill From</th>
+                            <th scope="col">Bill To</th>
+                            <th scope="col">Asset</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for bill in bills %}
+                            <tr>
+                                <td><a href="{% url 'bill_detail' bill.id %}">{{ bill.name }}</a></td>
+                                <td>{{ bill.service.name }}</td>
+                                <td>{{ bill.bill_from }}</td>
+                                <td>{{ bill.bill_to }}</td>
+                                <td><a href="{% url 'asset_detail' bill.service.asset.id %}">{{ bill.service.asset.name }}</a></td>
+                                <td><a href="{% url 'bill_detail' bill.id %}">View</a> |
+                                    <a href="{% url 'bill_update' bill.id %}">Edit</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if is_paginated %}
+                    {% if page_obj.has_previous %}
+                        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                        <a class="btn btn-outline-info mb-4"
+                           href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                    {% endif %}
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

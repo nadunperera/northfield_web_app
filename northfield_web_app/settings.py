@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'service.apps.ServiceConfig',
     'tenant.apps.TenantConfig',
     'stay.apps.StayConfig',
+    'bill.apps.BillConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

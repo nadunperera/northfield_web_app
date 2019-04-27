@@ -27,6 +27,7 @@
         <option value="$MODULE_DIR$/stay/templates" />
         <option value="$MODULE_DIR$/tenant/templates" />
         <option value="$MODULE_DIR$/website/templates" />
+        <option value="$MODULE_DIR$/bill/templates" />
       </list>
     </option>
   </component>

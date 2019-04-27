@@ -1,16 +1,17 @@
 {% extends "website/base.html" %}
 {% block content %}
     <div class="card">
-        <h5 class="card-header">{{ stay.tenant.first_name }} {{ stay.tenant.last_name }}</h5>
+        <h5 class="card-header">{{ bill.service.name }}</h5>
         <div class="card-body">
-            <h5 class="card-title">{{ stay.tenant.asset.name }}</h5>
-            <p class="card-text">Checkin : {{ stay.checkin }}</p>
-            <p class="card-text">Checkout : {{ stay.checkout }}</p>
+            <h5 class="card-title">{{ bill.name }}</h5>
+            <p class="card-text">Asset : {{ bill.service.asset.name }}</p>
+            <p class="card-text">Bill From : {{ bill.bill_from }}</p>
+            <p class="card-text">Bill To : {{ bill.bill_to }}</p>
             <p class="card-text">
-                <small class="text-muted">Created at {{ stay.created }}</small>
+                <small class="text-muted">Created at {{ bill.created }}</small>
             </p>
             <p class="card-text">
-                <small class="text-muted">Updated at {{ stay.updated }}</small>
+                <small class="text-muted">Updated at {{ bill.updated }}</small>
             </p>
         </div>
         <div class="card-footer">
@@ -18,10 +19,10 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav">
                         <li class="nav-item mr-2">
-                            <a class="btn btn-primary" href="{% url 'stay_create' %}">Add New</a>
+                            <a class="btn btn-primary" href="{% url 'bill_create' %}">Add New</a>
                         </li>
                         <li class="nav-item mr-2">
-                            <a class="btn btn-secondary" href="{% url 'stay_update' stay.id %}">Edit</a>
+                            <a class="btn btn-secondary" href="{% url 'bill_update' bill.id %}">Edit</a>
                         </li>
                     </ul>
                 </div>
