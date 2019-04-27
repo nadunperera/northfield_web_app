@@ -6,7 +6,7 @@ class ServiceCreateForm(forms.ModelForm):
 
     class Meta:
         model = Service
-        fields = ['name', 'category', 'provider', 'asset']
+        fields = ['asset', 'name', 'category', 'provider']
 
     def __init__(self, *args, **kwargs):
         owner = kwargs.pop('owner', None)
