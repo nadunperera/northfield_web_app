@@ -6,7 +6,7 @@ class TenantCreateForm(forms.ModelForm):
 
     class Meta:
         model = Tenant
-        fields = ['first_name', 'last_name', 'mobile', 'email', 'asset']
+        fields = ['asset', 'first_name', 'last_name', 'mobile', 'email']
 
     def __init__(self, *args, **kwargs):
         owner = kwargs.pop('owner', None)
