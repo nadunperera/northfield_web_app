@@ -17,3 +17,11 @@ class BillCreateUpdateForm(forms.ModelForm):
         owner = kwargs.pop('owner', None)
         super().__init__(*args, **kwargs)
         self.fields['service'].queryset = Service.objects.filter(asset__owner=owner)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        bill_from = cleaned_data.get('bill_from')
+        bill_to = cleaned_data.get('bill_to')
+
+        if not bill_to >= bill_from:
+            raise forms.ValidationError('Bill-to date cannot be greater than Bill-from date!')
