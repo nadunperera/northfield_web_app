@@ -14,7 +14,8 @@ class Tenant(models.Model):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        full_name = self.first_name + ' ' + self.last_name
+        return full_name
 
     def get_absolute_url(self):
         return reverse('tenant_detail', kwargs={'pk': self.pk})

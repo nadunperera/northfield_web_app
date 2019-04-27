@@ -1,17 +1,17 @@
 {% extends "website/base.html" %}
 {% block content %}
     <div class="card">
-        <h5 class="card-header">All Tenants</h5>
+        <h5 class="card-header">All Stays</h5>
         <div class="card-body">
-            {% if not tenants %}
-                <h5 class="card-title">You have no tenants.</h5>
-                <a class="btn btn-primary" href="{% url 'tenant_create' %}">Create one?</a>
+            {% if not stays %}
+                <h5 class="card-title">You have no stays.</h5>
+                <a class="btn btn-primary" href="{% url 'stay_create' %}">Create one?</a>
             {% else %}
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <div class="collapse navbar-collapse">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="btn btn-primary" href="{% url 'tenant_create' %}">Add New</a>
+                                <a class="btn btn-primary" href="{% url 'stay_create' %}">Add New</a>
                             </li>
                         </ul>
                     </div>
@@ -20,25 +20,21 @@
                     <table class="table table-hover">
                         <thead class="thead-dark">
                         <tr>
-                            <th scope="col">First Name</th>
-                            <th scope="col">Last Name</th>
-                            <th scope="col">Mobile</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">Tenant</th>
+                            <th scope="col">Checkin</th>
+                            <th scope="col">Checkout</th>
                             <th scope="col">Asset</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {% for tenant in tenants %}
+                        {% for stay in stays %}
                             <tr>
-                                <td><a href="{% url 'tenant_detail' tenant.id %}">{{ tenant.first_name }}</a></td>
-                                <td><a href="{% url 'tenant_detail' tenant.id %}">{{ tenant.last_name }}</a></td>
-                                <td>{{ tenant.mobile }}</td>
-                                <td>{{ tenant.email }}</td>
-                                <td><a href="{% url 'asset_detail' tenant.asset.id %}">{{ tenant.asset.name }}</a></td>
-                                <td><a href="{% url 'tenant_detail' tenant.id %}">View</a> |
-                                    <a href="{% url 'tenant_update' tenant.id %}">Edit</a> |
-                                    <a href="{% url 'tenant_delete' tenant.id %}">Delete</a>
+                                <td><a href="{% url 'tenant_detail' stay.tenant.id %}">{{ stay.tenant.first_name }} {{ stay.tenant.last_name }}</a></td>
+                                <td>{{ stay.checkin }}</td>
+                                <td>{{ stay.checkout }}</td>
+                                <td><a href="{% url 'asset_detail' stay.tenant.asset.id %}">{{ stay.tenant.asset.name }}</a></td>
+                                <td><a href="{% url 'stay_update' stay.id %}">Edit</a>
                                 </td>
                             </tr>
                         {% endfor %}
