@@ -34,7 +34,8 @@
                                 <td>{{ stay.checkin }}</td>
                                 <td>{{ stay.checkout }}</td>
                                 <td><a href="{% url 'asset_detail' stay.tenant.asset.id %}">{{ stay.tenant.asset.name }}</a></td>
-                                <td><a href="{% url 'stay_update' stay.id %}">Edit</a>
+                                <td><a href="{% url 'stay_detail' stay.id %}">View</a> |
+                                    <a href="{% url 'stay_update' stay.id %}">Edit</a>
                                 </td>
                             </tr>
                         {% endfor %}
