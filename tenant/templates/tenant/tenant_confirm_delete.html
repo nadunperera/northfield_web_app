@@ -9,7 +9,7 @@
                 <h2>Are you sure you want to delete {{ tenant.first_name }} {{ tenant.last_name }}?</h2>
             </div>
             <button type="submit" class="btn btn-danger">Yes, Delete</button>
-            <a class="btn btn-outline-secondary" href="{% url 'tenant_detail' tenant.id %}">Cancel</a>
+            <a class="btn btn-outline-secondary" href="{% url 'tenant_multiple_detail' tenant.id %}">Cancel</a>
         </form>
     </div>
 </div>

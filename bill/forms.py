@@ -15,8 +15,12 @@ class BillCreateUpdateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         owner = kwargs.pop('owner', None)
+        service_id = kwargs.pop('service_id', None)
         super().__init__(*args, **kwargs)
-        self.fields['service'].queryset = Service.objects.filter(asset__owner=owner)
+        if service_id:
+            self.fields['service'].queryset = Service.objects.filter(id=service_id)
+        else:
+            self.fields['service'].queryset = Service.objects.filter(asset__owner=owner)
 
     def clean(self):
         cleaned_data = super().clean()

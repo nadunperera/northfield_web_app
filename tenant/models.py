@@ -18,4 +18,4 @@ class Tenant(models.Model):
         return full_name
 
     def get_absolute_url(self):
-        return reverse('tenant_detail', kwargs={'pk': self.pk})
+        return reverse('asset_multiple_detail', kwargs={'pk': self.asset_id})

@@ -1,0 +1,84 @@
+{% extends "website/base.html" %}
+
+{% block content %}
+    <div class="card">
+        <h5 class="card-header">
+            {{ asset.name }}
+            <small class="text-muted"> {{ asset.address }} {{ asset.suburb }} {{ asset.postcode }} {{ asset.state }}</small>
+        </h5>
+        <div class="card-body">
+            <div class="card-deck">
+                <div class="card">
+                    <div class="card-body">
+                        {% if not tenants %}
+                            <h5 class="card-title">No Tenant records.</h5>
+                        {% else %}
+                            <h5 class="card-title">Tenants</h5>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <tbody>
+                                    {% for tenant in tenants %}
+                                        <tr>
+                                            <td>
+                                                <a href="{% url 'tenant_multiple_detail' tenant.id %}">{{ tenant.first_name }} {{ tenant.last_name }}</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        {% if not services %}
+                            <h5 class="card-title">No Service records.</h5>
+                        {% else %}
+                            <h5 class="card-title">Services</h5>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <tbody>
+                                    {% for service in services %}
+                                        <tr>
+                                            <td>
+                                                <a href="{% url 'service_multiple_detail' service.id %}">{{ service.name }}</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item mr-2">
+                            <a class="btn btn-secondary" href="{% url 'asset_update' asset.id %}">Edit Asset</a>
+                        </li>
+                        <li class="nav-item mr-2">
+                            <a class="btn btn-danger" href="{% url 'asset_delete' asset.id %}">Delete Asset</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse">
+                    {% if user.is_authenticated %}
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item mr-2">
+                                <a class="btn btn-primary" href="{% url 'tenant_asset_create' asset.id %}">Add New Tenant</a>
+                            </li>
+                            <li class="nav-item mr-2">
+                                <a class="btn btn-primary" href="{% url 'service_asset_create' asset.id %}">Add New Service</a>
+                            </li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+    </div>
+{% endblock content %}

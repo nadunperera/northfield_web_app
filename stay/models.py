@@ -15,4 +15,4 @@ class Stay(models.Model):
         return self.id
 
     def get_absolute_url(self):
-        return reverse('stay_detail', kwargs={'pk': self.pk})
+        return reverse('tenant_multiple_detail', kwargs={'pk': self.tenant_id})

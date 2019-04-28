@@ -18,4 +18,4 @@ class Bill(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('bill_detail', kwargs={'pk': self.pk})
+        return reverse('service_multiple_detail', kwargs={'pk': self.service_id})

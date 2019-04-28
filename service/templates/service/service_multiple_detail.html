@@ -1,0 +1,64 @@
+{% extends "website/base.html" %}
+{% block content %}
+    <div class="card">
+        <h5 class="card-header">{{ service.name }} at {{ service.asset.name }}
+            <small class="text-muted"> {{ service.provider }} {{ service.category }}</small>
+        </h5>
+        <div class="card-body">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Bills</h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Bill From</th>
+                                <th scope="col">Bill To</th>
+                                <th scope="col">Discount</th>
+                                <th scope="col">Discount End</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for bill in bills %}
+                                <tr>
+                                    <td>{{ bill.name }}</td>
+                                    <td>{{ bill.bill_from }}</td>
+                                    <td>{{ bill.bill_to }}</td>
+                                    <td>{{ bill.discount }}</td>
+                                    <td>{{ bill.discount_end }}</td>
+                                    <td><a href="{% url 'bill_update' bill.id %}">Edit</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item mr-2">
+                            <a class="btn btn-secondary" href="{% url 'service_update' service.id %}">Edit Service</a>
+                        </li>
+                        <li class="nav-item mr-2">
+                            <a class="btn btn-danger" href="{% url 'service_delete' service.id %}">Delete Service</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse">
+                    {% if user.is_authenticated %}
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item mr-2">
+                                <a class="btn btn-primary" href="{% url 'bill_service_create' service.id %}">Add New Bill</a>
+                            </li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+    </div>
+{% endblock content %}

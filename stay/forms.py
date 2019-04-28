@@ -14,8 +14,12 @@ class StayCreateUpdateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         owner = kwargs.pop('owner', None)
+        tenant_id = kwargs.pop('tenant_id', None)
         super().__init__(*args, **kwargs)
-        self.fields['tenant'].queryset = Tenant.objects.filter(asset__owner=owner)
+        if tenant_id:
+            self.fields['tenant'].queryset = Tenant.objects.filter(id=tenant_id)
+        else:
+            self.fields['tenant'].queryset = Tenant.objects.filter(asset__owner=owner)
 
     def clean(self):
         cleaned_data = super().clean()
