@@ -44,8 +44,8 @@ class AssetMultipleDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailVie
 
     def get_context_data(self, **kwargs):
         context = super(AssetMultipleDetailView, self).get_context_data(**kwargs)
-        context['tenants'] = Tenant.objects.filter(asset=context['asset'])
-        context['services'] = Service.objects.filter(asset=context['asset'])
+        context['tenants'] = Tenant.objects.filter(asset=context['asset']).order_by('created')
+        context['services'] = Service.objects.filter(asset=context['asset']).order_by('created')
         return context
 
 

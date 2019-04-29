@@ -25,6 +25,6 @@ class StayCreateUpdateForm(forms.ModelForm):
         cleaned_data = super().clean()
         checkin = cleaned_data.get('checkin')
         checkout = cleaned_data.get('checkout')
-
-        if not checkout >= checkin:
-            raise forms.ValidationError('Checkout date cannot be greater than Checkin date!')
+        if checkout:
+            if not checkout >= checkin:
+                raise forms.ValidationError('Checkout date cannot be greater than Checkin date!')

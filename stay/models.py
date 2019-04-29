@@ -6,7 +6,7 @@ from django.urls import reverse
 # Create your models here.
 class Stay(models.Model):
     checkin = models.DateField()
-    checkout = models.DateField()
+    checkout = models.DateField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     tenant = models.ForeignKey(Tenant, on_delete=models.CASCADE)
