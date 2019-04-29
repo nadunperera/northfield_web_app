@@ -22,7 +22,6 @@
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Category</th>
-                            <th scope="col">Provider</th>
                             <th scope="col">Asset</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -32,7 +31,6 @@
                             <tr>
                                 <td><a href="{% url 'service_detail' service.id %}">{{ service.name }}</a></td>
                                 <td>{{ service.category }}</td>
-                                <td>{{ service.provider }}</td>
                                 <td><a href="{% url 'asset_detail' service.asset.id %}">{{ service.asset.name }}</a></td>
                                 <td><a href="{% url 'service_detail' service.id %}">View</a> |
                                     <a href="{% url 'service_update' service.id %}">Edit</a> |
