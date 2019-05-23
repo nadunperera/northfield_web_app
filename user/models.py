@@ -8,4 +8,4 @@ class Profile(models.Model):
     mobile = models.CharField(max_length=10)
 
     def __str__(self):
-        return f'{self.user.username} Profile'
+        return f'{self.user.__str__()} Profile'
